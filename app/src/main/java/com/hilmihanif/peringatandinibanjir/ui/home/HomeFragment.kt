@@ -80,7 +80,7 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
-    fun getFirebaseData(){
+    private fun getFirebaseData(){
         val database = Firebase.database
         val myRef = database.getReference("data_cuaca")
         val childEventListener =  object: ChildEventListener {
@@ -123,4 +123,9 @@ class HomeFragment : Fragment() {
 
         myRef.addChildEventListener(childEventListener)
     }
+
+    private fun statusBanjir(suhu:Float,kelembaban:Float,curah:Float):String{
+        return ""
+    }
+
 }
