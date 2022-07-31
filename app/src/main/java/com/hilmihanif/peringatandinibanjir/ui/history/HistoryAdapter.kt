@@ -34,10 +34,10 @@ class HistoryAdapter(private val listDataCuaca:List<DataCuaca>?): RecyclerView.A
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         listDataCuaca?.let {
-            holder.rvCurah.text = it.get(position).curah_hujan.toString()
-            holder.rvSuhu.text = it.get(position).suhu.toString()
-            holder.rvKelembaban.text = it.get(position).kelembaban.toString()
-            holder.rvTime.text = it.get(position).waktu_pengukuran
+            holder.rvCurah.text = "${it.get(position).curah_hujan.toString()} mm"
+            holder.rvSuhu.text = "${it.get(position).suhu.toString()} ℃"
+            holder.rvKelembaban.text = "${it.get(position).kelembaban.toString()} %RH"
+            holder.rvTime.text = "${ it.get(position).getStringTimeWib() } WIB"
         }
 
     }
