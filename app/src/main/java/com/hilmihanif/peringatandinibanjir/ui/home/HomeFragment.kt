@@ -51,7 +51,7 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        textView = binding.textHome
+//        textView = binding.textHome
         suhuTextView =binding.suhuTextView
         kelembabanTextView  = binding.kelembabanTextView
         curahTextView = binding.curahTextView
@@ -59,9 +59,9 @@ class HomeFragment : Fragment() {
         lastUpdateTextView = binding.lastUpdateTextView
         statusDBDTextView = binding.statusDBDTextView
 
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+//        homeViewModel.text.observe(viewLifecycleOwner) {
+//            textView.text = it
+//        }
 
 //        homeViewModel.data.observe(viewLifecycleOwner){
 //

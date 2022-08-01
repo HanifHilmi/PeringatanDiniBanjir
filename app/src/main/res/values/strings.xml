@@ -2,7 +2,7 @@
     <string name="app_name">Peringatan Dini Banjir dan DBD</string>
     <string name="title_activity_bottom_nav">Peringatan Dini Banjir</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_profile">Profile</string>
     <string name="title_history">History</string>
     <string name="not_available">N/A</string>
 </resources>
