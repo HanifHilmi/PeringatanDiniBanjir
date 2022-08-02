@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.hilmihanif.peringatandinibanjir">
 
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PeringatanDIniBanjir"
         tools:targetApi="31">
-
+        <activity
+            android:name=".ArtikelDetailActivity"
+            android:exported="false" />
 
         <service
             android:name=".PeringatanService"
@@ -23,23 +24,21 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
         <activity
             android:name=".SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".Bottom_nav_Activity"
             android:exported="true"
-            android:label="@string/title_activity_bottom_nav">
-
-        </activity>
-
-
+            android:label="@string/title_activity_bottom_nav"></activity>
     </application>
 
 </manifest>

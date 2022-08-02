@@ -8,9 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -38,6 +41,8 @@ class HomeFragment : Fragment() {
     lateinit var statusTextView:TextView
     lateinit var lastUpdateTextView:TextView
     lateinit var statusDBDTextView:TextView
+    lateinit var artikelRecycler:RecyclerView
+
 
 
     override fun onCreateView(
@@ -58,6 +63,7 @@ class HomeFragment : Fragment() {
         statusTextView = binding.statusTextView
         lastUpdateTextView = binding.lastUpdateTextView
         statusDBDTextView = binding.statusDBDTextView
+        artikelRecycler = binding.artikelRecycler
 
 //        homeViewModel.text.observe(viewLifecycleOwner) {
 //            textView.text = it
@@ -74,6 +80,7 @@ class HomeFragment : Fragment() {
 //            lastUpdateTextView.text = it.waktu_pengukuran
 //        }
 
+        artikelRecycler.layoutManager = LinearLayoutManager(context)
         getFirebaseData()
 
 
@@ -91,7 +98,7 @@ class HomeFragment : Fragment() {
         val myRef = database.getReference("data_cuaca")
         val newRef = myRef.orderByKey().limitToLast(1)
         val stRef = database.getReference("status_dbd").orderByKey().limitToLast(3)
-
+        val arRef = database.getReference("artikel")
 
 
         newRef.addChildEventListener(object: ChildEventListener {
@@ -152,7 +159,9 @@ class HomeFragment : Fragment() {
 
             stRef.addValueEventListener(object: ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
+                    statusDBDTextView.text = "N/A"
+
+                    Toast.makeText(context,"Terdapat Error Koneksi",Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -177,6 +186,40 @@ class HomeFragment : Fragment() {
                         //Log.d(ContentValues.TAG, "history:" +listData.toString() )
                     }catch (e:Exception){
                         Log.d(ContentValues.TAG, "status error:"+ e.toString())
+                        error = true
+                    }
+                    //Log.d(ContentValues.TAG, "history last:" +query.get().toString() )
+                }
+            })
+
+        }while(error)
+
+
+        do{
+            var error = false
+
+            arRef.addValueEventListener(object: ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    try {
+                        var status_sum = 0
+                        val mapData = snapshot.getValue<Map<String,HashMap<String,String>>>()!!
+                        val entries:List<HashMap<String,String>> = mapData.entries.map { it.value }
+                        Log.d(ContentValues.TAG, "artikel list:" +entries.get(1).toString() )
+
+                        artikelRecycler.adapter = ArtikelAdapter(entries)
+
+
+
+
+
+
+                        //Log.d(ContentValues.TAG, "history:" +listData.toString() )
+                    }catch (e:Exception){
+                        Log.d(ContentValues.TAG, "artikel error:"+ e.toString())
                         error = true
                     }
                     //Log.d(ContentValues.TAG, "history last:" +query.get().toString() )
