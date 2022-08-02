@@ -10,11 +10,11 @@
         <entry key="..\:/Data Hanif/Android Studio/PeringatanDIniBanjir/app/src/main/res/drawable/rainy_48px.xml" value="0.1" />
         <entry key="..\:/Data Hanif/Android Studio/PeringatanDIniBanjir/app/src/main/res/drawable/thermometer_48px.xml" value="0.118" />
         <entry key="..\:/Data Hanif/Android Studio/PeringatanDIniBanjir/app/src/main/res/layout/activity_artikel_detail.xml" value="0.33" />
-        <entry key="..\:/Data Hanif/Android Studio/PeringatanDIniBanjir/app/src/main/res/layout/activity_bottom_nav.xml" value="0.25" />
+        <entry key="..\:/Data Hanif/Android Studio/PeringatanDIniBanjir/app/src/main/res/layout/activity_bottom_nav.xml" value="0.4388133498145859" />
         <entry key="..\:/Data Hanif/Android Studio/PeringatanDIniBanjir/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Data Hanif/Android Studio/PeringatanDIniBanjir/app/src/main/res/layout/activity_splash.xml" value="0.33" />
         <entry key="..\:/Data Hanif/Android Studio/PeringatanDIniBanjir/app/src/main/res/layout/artikel_single_data.xml" value="0.125" />
-        <entry key="..\:/Data Hanif/Android Studio/PeringatanDIniBanjir/app/src/main/res/layout/fragment_dashboard.xml" value="0.33" />
+        <entry key="..\:/Data Hanif/Android Studio/PeringatanDIniBanjir/app/src/main/res/layout/fragment_dashboard.xml" value="0.5" />
         <entry key="..\:/Data Hanif/Android Studio/PeringatanDIniBanjir/app/src/main/res/layout/fragment_history.xml" value="0.25" />
         <entry key="..\:/Data Hanif/Android Studio/PeringatanDIniBanjir/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Data Hanif/Android Studio/PeringatanDIniBanjir/app/src/main/res/layout/fragment_notifications.xml" value="0.3625" />
@@ -28,5 +28,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.125" />
+      </ProjectState>
+    </option>
   </component>
 </project>

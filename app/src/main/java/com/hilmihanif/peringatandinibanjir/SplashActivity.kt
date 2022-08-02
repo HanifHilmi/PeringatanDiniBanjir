@@ -2,6 +2,7 @@ package com.hilmihanif.peringatandinibanjir
 
 import android.Manifest
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
@@ -10,9 +11,14 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.widget.ProgressBar
+import com.hilmihanif.peringatandinibanjir.data.ThisAppConst
 
 
 class SplashActivity : AppCompatActivity() {
+
+
+
+
     private lateinit var pbSplash: ProgressBar
     private lateinit var mainActivtiyintent : Intent
     private var i:Int = 0
@@ -24,7 +30,17 @@ class SplashActivity : AppCompatActivity() {
         pbSplash = findViewById(R.id.pbSplash)
         mainActivtiyintent = Intent(this, Bottom_nav_Activity::class.java)
 
+        val pref = getSharedPreferences(ThisAppConst.PREF, Context.MODE_PRIVATE)
+        if (pref.getBoolean(ThisAppConst.NOTIF_BANJIR,true)){
+            ThisAppConst.setNotifBanjir(true)
+        }
+
+        if (pref.getBoolean(ThisAppConst.NOTIF_DBD,true)){
+            ThisAppConst.setNotifDBD(true)
+        }
+
         loading()
+
 
     }
 

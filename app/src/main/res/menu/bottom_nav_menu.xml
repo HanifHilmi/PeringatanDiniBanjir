@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/person_fill1_wght400_grad0_opsz48"
+        android:icon="@drawable/tune_fill1"
         android:title="@string/title_profile" />
 
     <item

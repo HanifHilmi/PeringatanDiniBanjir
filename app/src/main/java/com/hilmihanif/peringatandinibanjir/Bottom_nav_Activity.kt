@@ -1,8 +1,11 @@
 package com.hilmihanif.peringatandinibanjir
 
 import android.content.ContentValues.TAG
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.window.SplashScreen
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -36,25 +39,11 @@ class Bottom_nav_Activity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        Firebase.messaging.subscribeToTopic("Banjir")
-            .addOnCompleteListener { task ->
-                var msg = "Subscribed to Banjir"
-                if (!task.isSuccessful) {
-                    msg = "Subscribe failed"
-                }
-                Log.d(TAG, msg)
 
-            }
 
-        Firebase.messaging.subscribeToTopic("DBD")
-            .addOnCompleteListener { task ->
-                var msg = "Subscribed to DBD"
-                if (!task.isSuccessful) {
-                    msg = "Subscribe failed"
-                }
-                Log.d(TAG, msg)
 
-            }
+
+
 
 
     }
