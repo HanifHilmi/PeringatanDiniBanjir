@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.common.internal.Objects
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -41,6 +42,7 @@ class HomeFragment : Fragment() {
     lateinit var statusTextView:TextView
     lateinit var lastUpdateTextView:TextView
     lateinit var statusDBDTextView:TextView
+    lateinit var conAlert:TextView
     lateinit var artikelRecycler:RecyclerView
 
 
@@ -64,6 +66,7 @@ class HomeFragment : Fragment() {
         lastUpdateTextView = binding.lastUpdateTextView
         statusDBDTextView = binding.statusDBDTextView
         artikelRecycler = binding.artikelRecycler
+        conAlert = binding.conAlert
 
 //        homeViewModel.text.observe(viewLifecycleOwner) {
 //            textView.text = it
@@ -211,7 +214,7 @@ class HomeFragment : Fragment() {
                         Log.d(ContentValues.TAG, "artikel list:" +entries.get(1).toString() )
 
                         artikelRecycler.adapter = ArtikelAdapter(entries)
-
+                        conAlert.visibility = TextView.GONE
 
 
 
@@ -227,8 +230,18 @@ class HomeFragment : Fragment() {
             })
 
         }while(error)
+        if (lastUpdateTextView.text == "N/A"){
+            lastUpdateTextView.text = "Terdapat Error pada Jaringan"
 
+        }
 
+        if (artikelRecycler.adapter == null){
+
+            conAlert.visibility = TextView.VISIBLE
+            conAlert.text = "Terdapat Error pada Jaringan"
+        }else{
+            conAlert.visibility = TextView.GONE
+        }
 
 
 

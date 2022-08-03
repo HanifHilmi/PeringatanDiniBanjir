@@ -52,7 +52,7 @@
         app:layout_constraintTop_toBottomOf="@+id/banjirSwitch" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/aboutButton"
         style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

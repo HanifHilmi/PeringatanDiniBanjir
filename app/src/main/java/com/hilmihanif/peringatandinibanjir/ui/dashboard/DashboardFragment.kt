@@ -1,6 +1,7 @@
 package com.hilmihanif.peringatandinibanjir.ui.dashboard
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.button.MaterialButton
+import com.hilmihanif.peringatandinibanjir.AboutActivity
 import com.hilmihanif.peringatandinibanjir.SplashActivity
 import com.hilmihanif.peringatandinibanjir.data.ThisAppConst
 import com.hilmihanif.peringatandinibanjir.databinding.FragmentDashboardBinding
@@ -41,11 +43,17 @@ class DashboardFragment : Fragment() {
         val button:Button = binding.loginButton
         val notifBanjirSwitch:Switch = binding.banjirSwitch
         val notifDBDSwitch:Switch = binding.dbdSwitch
+        val aboutButton:Button = binding.aboutButton
 
 
         val pref = context?.getSharedPreferences(ThisAppConst.PREF, Context.MODE_PRIVATE)
         notifBanjirSwitch.isChecked = pref!!.getBoolean(ThisAppConst.NOTIF_BANJIR,true)
         notifDBDSwitch.isChecked = pref!!.getBoolean(ThisAppConst.NOTIF_DBD,true)
+
+        aboutButton.setOnClickListener {
+            val aboutIntent = Intent(context,AboutActivity::class.java)
+            startActivity(aboutIntent)
+        }
 
         notifBanjirSwitch.setOnCheckedChangeListener { p0, b ->
             //Toast.makeText(context, "notif banjir $b", Toast.LENGTH_SHORT).show()
@@ -54,9 +62,7 @@ class DashboardFragment : Fragment() {
                 this?.apply()
             }
             ThisAppConst.setNotifBanjir(b)
-
         }
-
         notifDBDSwitch.setOnCheckedChangeListener { compoundButton, b ->
             //Toast.makeText(context, "notif banjir $b", Toast.LENGTH_SHORT).show()
             with(pref.edit()){
@@ -65,12 +71,6 @@ class DashboardFragment : Fragment() {
             }
             ThisAppConst.setNotifDBD(b)
         }
-
-
-
-
-
-
         return root
     }
 
