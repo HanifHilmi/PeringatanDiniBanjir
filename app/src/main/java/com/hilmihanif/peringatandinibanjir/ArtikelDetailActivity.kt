@@ -18,7 +18,6 @@ class ArtikelDetailActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.title = "Artikel"
 
-
         mapArtikel = intent.getSerializableExtra("Artikel")!! as HashMap<String, String>?
         val judul= findViewById<TextView>(R.id.detailJudul)
         val sumber= findViewById<TextView>(R.id.detailSumber)
