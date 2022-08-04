@@ -11,4 +11,7 @@
     <color name="safe_color">#3BCF60</color>
     <color name="warning_color">#BC1818</color>
     <color name="cautions_color">#FFCF56</color>
+    <color name="main_color">#FF3C6CC3</color>
+
+    <color name="primary_color">#3C6CC3</color>
 </resources>

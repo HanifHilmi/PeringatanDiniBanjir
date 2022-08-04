@@ -18,8 +18,7 @@
             android:exported="false" />
         <activity
             android:name=".ArtikelDetailActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+            android:exported="false" />
 
         <service
             android:name=".PeringatanService"
