@@ -208,24 +208,19 @@ class HomeFragment : Fragment() {
 
                 override fun onDataChange(snapshot: DataSnapshot) {
                     try {
-                        var status_sum = 0
                         val mapData = snapshot.getValue<Map<String,HashMap<String,String>>>()!!
                         val entries:List<HashMap<String,String>> = mapData.entries.map { it.value }
                         Log.d(ContentValues.TAG, "artikel list:" +entries.get(1).toString() )
 
                         artikelRecycler.adapter = ArtikelAdapter(entries)
+
                         conAlert.visibility = TextView.GONE
 
-
-
-
-
-                        //Log.d(ContentValues.TAG, "history:" +listData.toString() )
                     }catch (e:Exception){
                         Log.d(ContentValues.TAG, "artikel error:"+ e.toString())
                         error = true
                     }
-                    //Log.d(ContentValues.TAG, "history last:" +query.get().toString() )
+
                 }
             })
 
@@ -238,7 +233,7 @@ class HomeFragment : Fragment() {
         if (artikelRecycler.adapter == null){
 
             conAlert.visibility = TextView.VISIBLE
-            conAlert.text = "Terdapat Error pada Jaringan"
+            conAlert.text = "Loading..."
         }else{
             conAlert.visibility = TextView.GONE
         }

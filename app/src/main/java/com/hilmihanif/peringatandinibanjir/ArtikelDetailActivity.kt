@@ -37,6 +37,8 @@ class ArtikelDetailActivity : AppCompatActivity() {
 
 
 
+
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
