@@ -1,11 +1,14 @@
 package com.hilmihanif.peringatandinibanjir.ui.home
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.content.ContentValues
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -27,10 +30,14 @@ import com.hilmihanif.peringatandinibanjir.data.DataCuaca
 import com.hilmihanif.peringatandinibanjir.data.DataStatusDBD
 import com.hilmihanif.peringatandinibanjir.databinding.FragmentHomeBinding
 import com.hilmihanif.peringatandinibanjir.ui.history.HistoryAdapter
+import kotlin.math.log
 
 class HomeFragment : Fragment() {
 
+
     private var _binding: FragmentHomeBinding? = null
+    private var expandclicked = false
+
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -44,6 +51,8 @@ class HomeFragment : Fragment() {
     lateinit var statusDBDTextView:TextView
     lateinit var conAlert:TextView
     lateinit var artikelRecycler:RecyclerView
+    lateinit var expandButton:ImageView
+    lateinit var cardView:View
 
 
 
@@ -67,6 +76,30 @@ class HomeFragment : Fragment() {
         statusDBDTextView = binding.statusDBDTextView
         artikelRecycler = binding.artikelRecycler
         conAlert = binding.conAlert
+        expandButton = binding.expand
+        cardView = binding.ketCV
+
+
+        expandButton.setOnClickListener{
+
+            if(expandclicked){
+                cardView.visibility = View.GONE
+                expandButton.animate().rotationX(0f).start()
+                expandclicked = false
+            }else{
+
+                expandButton.animate().rotationX(180f).start()
+                // animation not complete
+                cardView.animate().setListener(object:AnimatorListenerAdapter(){
+                    override fun onAnimationStart(animation: Animator?) {
+                        super.onAnimationStart(animation)
+                        cardView.visibility = View.VISIBLE
+                    }
+                }).start()
+                expandclicked = true
+            }
+
+        }
 
 //        homeViewModel.text.observe(viewLifecycleOwner) {
 //            textView.text = it
@@ -97,11 +130,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun getFirebaseData(){
-        val database = Firebase.database
+        val database= Firebase.database
+
         val myRef = database.getReference("data_cuaca")
         val newRef = myRef.orderByKey().limitToLast(1)
         val stRef = database.getReference("status_dbd").orderByKey().limitToLast(3)
-        val arRef = database.getReference("artikel")
+        val arRef = Firebase.database.getReference("artikel")
 
 
         newRef.addChildEventListener(object: ChildEventListener {
@@ -254,7 +288,7 @@ class HomeFragment : Fragment() {
         var count = 0
 
         val database = Firebase.database
-        val ref = database.getReference("data_cuaca").orderByKey().limitToLast(30)
+        val ref = database.getReference("data_cuaca").orderByKey().limitToLast(20)
 
         do{
 
@@ -319,5 +353,33 @@ class HomeFragment : Fragment() {
         }
 
     }
+
+//    private fun statusBanjirDataBase():Int{
+//        val database = Firebase.database
+//        val ref = database.getReference("status_banjir")
+//        var status:Int? = null
+//
+//        do{
+//            var error = true
+//            ref.get().addOnSuccessListener {
+//
+//                val sb =  it.getValue<Int>() as Int
+//                status = sb
+//                Log.d(ContentValues.TAG, "sbdb :$status : $sb")
+//
+//            }.addOnFailureListener{
+//                Log.e(ContentValues.TAG, "sbdb:$it")
+//                error = false
+//            }
+//
+//
+//        }while(error)
+//
+//        Log.d(ContentValues.TAG, "sbdb 2:$status")
+//        return status!!
+//
+//
+//
+//    }
 
 }

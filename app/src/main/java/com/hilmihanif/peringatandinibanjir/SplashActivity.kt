@@ -11,6 +11,8 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.widget.ProgressBar
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.ktx.messaging
 import com.hilmihanif.peringatandinibanjir.data.ThisAppConst
 
 
@@ -39,6 +41,16 @@ class SplashActivity : AppCompatActivity() {
             ThisAppConst.setNotifDBD(true)
         }
 
+        Firebase.messaging.subscribeToTopic("Debug")
+            .addOnCompleteListener { task ->
+                var msg = "Subscribed to Debug"
+                if (!task.isSuccessful) {
+                    msg = "Subscribe debug failed"
+                }
+                Log.d(ContentValues.TAG, msg)
+            }
+
+
         loading()
 
 
@@ -50,7 +62,7 @@ class SplashActivity : AppCompatActivity() {
             while (i<=100) {
 
                 Handler(Looper.getMainLooper()).post {
-                    i += 15
+                    i += 1
                     pbSplash.progress = i
                     Log.d(ContentValues.TAG,"i = ${i}")
 
@@ -61,7 +73,7 @@ class SplashActivity : AppCompatActivity() {
                 }
 
                 try {
-                    Thread.sleep(100)
+                    Thread.sleep(10)
                 } catch (e: InterruptedException) {
                     e.printStackTrace()
                 }
